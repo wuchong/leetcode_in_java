@@ -51,15 +51,28 @@ public class AnagramsTest {
 
 	private void assertArrayEquals(List<String> result, List<String> anagrams) {
 		// TODO Auto-generated method stub
-		if(result.size() != anagrams.size() ) assert(false);
+		String ret = arrayToString(result);
+		String ana = arrayToString(anagrams);
+		assertFalse(errorString(ret,ana),result.size() != anagrams.size());
+		
 		for(String s : result){
-			if(!anagrams.contains(s)){
-				assert(false);
-			}
+			assertFalse(errorString(ret,ana),!anagrams.contains(s));
 		}
-		assert(true);
+		assertTrue(true);
 		
 	}
+	
+	private String errorString(Object expected,Object result){
+		return "expected:<"+expected+"> but was:<"+result+">";
+	}
 
+	private String arrayToString(List<String> list){
+		StringBuilder sb = new StringBuilder("[");
+		for(String s : list){
+			sb.append(s+",");
+		}
+		sb.append("]");
+		return sb.toString();
+	}
 
 }
