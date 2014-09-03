@@ -16,7 +16,7 @@ public class ConvertSortedArraytoBinarySearchTreeTest {
 		
 		
 		ConvertSortedArraytoBinarySearchTree a = new ConvertSortedArraytoBinarySearchTree();
-		assertTreeEquals(tree2,a.sortedArrayToBST(num));
+		AssertUtil.assertTreeEquals(tree2,a.sortedArrayToBST(num));
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class ConvertSortedArraytoBinarySearchTreeTest {
 		
 		
 		ConvertSortedArraytoBinarySearchTree a = new ConvertSortedArraytoBinarySearchTree();
-		assertTreeEquals(tree3,a.sortedArrayToBST(num));
+		AssertUtil.assertTreeEquals(tree3,a.sortedArrayToBST(num));
 	}
 	
 	@Test
@@ -43,26 +43,10 @@ public class ConvertSortedArraytoBinarySearchTreeTest {
 		
 		
 		ConvertSortedArraytoBinarySearchTree a = new ConvertSortedArraytoBinarySearchTree();
-		assertTreeEquals(tree1,a.sortedArrayToBST(num));
+		AssertUtil.assertTreeEquals(tree1,a.sortedArrayToBST(num));
 	}
 	
 	
-	private void assertTreeEquals(TreeNode expected, TreeNode result) {
-		if(expected == null || result == null){
-			if(expected != null){
-				assertFalse(errorString("null",result.val),true);
-			}else if(result != null){
-				assertFalse(errorString(expected.val,"null"),true);
-			}else{
-				return;
-			}
-		}
-		assertFalse(errorString(expected.val,result.val),expected.val != result.val);
-		assertTreeEquals(expected.left,result.left);
-		assertTreeEquals(expected.right,result.right);
-	}
+
 	
-	private String errorString(Object expected,Object result){
-		return "expected:<"+expected+"> but was:<"+result+">";
-	}
 }
