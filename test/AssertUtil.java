@@ -1,6 +1,7 @@
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -50,7 +51,49 @@ public class AssertUtil {
     			}
     		}
     	}
-		
+	}
+	
+	//二维list一般性检验
+	public static void assertListCommonEquals(List<List<String>> expected,
+			List<List<String>> result) {
+		String error = errorString(Arrays.toString(expected.toArray()),
+				Arrays.toString(expected.toArray()));
+		assertFalse(error,expected.size() != result.size());
+		for(List<String> list : expected){
+			assertFalse(error, !result.contains(list));
+		}
+	}
+	
+	
+	public static void assertRandomListEquals(RandomListNode expected,RandomListNode result){
+		if(expected == null || result == null){
+			if(expected == null || result == null){
+				if(expected != null){
+					assertFalse(errorString("null",result.label),true);
+				}else if(result != null){
+					assertFalse(errorString(expected.label,"null"),true);
+				}else{
+					return;
+				}
+			}
+		}
+		RandomListNode node1 = expected;
+		RandomListNode node2 = result;
+		while(node1 != null){
+			if(node1.label != node2.label){
+				assertFalse("label not equal"+errorString(expected.label,result.label),true);
+			}
+			if(node1.random == null || node2.random == null){
+				if(node1.random != node2.random){
+					assertFalse("random not equal null",true);
+				}
+			}else if(node1.random.label != node2.random.label){
+				assertFalse("random "+errorString(node1.random.label,node2.random.label),true);
+			}
+			node1 = node1.next;
+			node2 = node2.next;
+		}
+		assertFalse(node2 != null);
 	}
 	
 	private static String errorString(Object expected,Object result){

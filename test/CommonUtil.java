@@ -1,17 +1,13 @@
+import java.util.Arrays;
 import java.util.List;
 
 
 public class CommonUtil {
 
 	public static String listToString(List<String> list){
-		StringBuilder sb = new StringBuilder("[");
-		for(String s : list){
-			sb.append(s+",");
-		}
-		sb.deleteCharAt(sb.length()-1);
-		sb.append("]");
-		return sb.toString();
+		return Arrays.toString(list.toArray());
 	}
+
 	
 	public static String arrayToString(char[] ary){
 		StringBuilder sb = new StringBuilder();
