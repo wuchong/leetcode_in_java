@@ -64,7 +64,7 @@ public class AssertUtil {
 		}
 	}
 	
-	
+	//检验随机链表是否相同
 	public static void assertRandomListEquals(RandomListNode expected,RandomListNode result){
 		if(expected == null || result == null){
 			if(expected == null || result == null){
@@ -96,6 +96,19 @@ public class AssertUtil {
 		assertFalse(node2 != null);
 	}
 	
+	
+	public static void assertLinkedListEquals(ListNode expected,ListNode result){
+		ListNode node1 = expected;
+		ListNode node2 = result;
+		String str1 = CommonUtil.linkedlistToString(node1);
+		String str2 = CommonUtil.linkedlistToString(node2);
+		while(node1 != null){
+			assertFalse("val not equal"+errorString(str1,str2),node1.val != node2.val);
+			node1 = node1.next;
+			node2 = node2.next;
+		}
+		assertFalse("val not equal"+errorString(str1,str2),node2 != null);
+	}
 	private static String errorString(Object expected,Object result){
 		return "expected:<"+expected+"> but was:<"+result+">";
 	}
