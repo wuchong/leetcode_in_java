@@ -55,6 +55,18 @@ public class CommonUtil {
 		return head;
 	}
 	
+	public static TreeNode buildTree(String[] ary){
+		return buildTree(ary,0);
+	}
 	
+	private static TreeNode buildTree(String[] ary, int index) {
+		if (index > ary.length - 1 || ary[index].equals("#")) {
+			return null;
+		}
+		TreeNode root = new TreeNode(Integer.parseInt(ary[index]));
+		root.left = buildTree(ary, index * 2 + 1);
+		root.right = buildTree(ary, index * 2 + 2);
+		return root;
+	}
 
 }

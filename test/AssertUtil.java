@@ -102,6 +102,9 @@ public class AssertUtil {
 		ListNode node2 = result;
 		String str1 = CommonUtil.linkedlistToString(node1);
 		String str2 = CommonUtil.linkedlistToString(node2);
+		if((node1 == null || node2 == null) && (node1 != node2)){
+			assertFalse(errorString(str1,str2),true);
+		}
 		while(node1 != null){
 			assertFalse("val not equal"+errorString(str1,str2),node1.val != node2.val);
 			node1 = node1.next;
