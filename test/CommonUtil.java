@@ -1,10 +1,11 @@
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class CommonUtil {
 
-	public static String listToString(List<String> list){
+	public static <E> String listToString(List<E> list){
 		return Arrays.toString(list.toArray());
 	}
 
@@ -56,17 +57,30 @@ public class CommonUtil {
 	}
 	
 	public static TreeNode buildTree(String[] ary){
-		return buildTree(ary,0);
-	}
-	
-	private static TreeNode buildTree(String[] ary, int index) {
-		if (index > ary.length - 1 || ary[index].equals("#")) {
+		if(ary == null || ary.length <= 0 || ary[0].equals("#"))
 			return null;
+		LinkedList<TreeNode> q = new LinkedList<>();
+		TreeNode root = new TreeNode(Integer.parseInt(ary[0]));
+		q.offer(root);
+		int i=1;
+		while(!q.isEmpty()){
+			TreeNode node = q.poll();
+			node.left = createTreeNode(ary,i++);
+			node.right = createTreeNode(ary,i++);
+			if(node.left != null) q.offer(node.left);
+			if(node.right != null) q.offer(node.right);
 		}
-		TreeNode root = new TreeNode(Integer.parseInt(ary[index]));
-		root.left = buildTree(ary, index * 2 + 1);
-		root.right = buildTree(ary, index * 2 + 2);
+		
 		return root;
 	}
+	
+	private static TreeNode createTreeNode(String[] ary,int i){
+		if(i <= ary.length-1 && !ary[i].equals("#")){
+			return new TreeNode(Integer.parseInt(ary[i]));
+		}else{
+			return null;
+		}
+	}
+	
 
 }

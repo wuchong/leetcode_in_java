@@ -7,17 +7,16 @@ import java.util.List;
 
 public class AssertUtil {
 	//list一般性检验，不要求顺序一致
-	public static void assertArrayCommonEquals(List<String> result, List<String> anagrams) {
+	public static <E> void assertArrayCommonEquals(List<E> result, List<E> anagrams) {
 		// TODO Auto-generated method stub
 		String ret = CommonUtil.listToString(result);
 		String ana = CommonUtil.listToString(anagrams);
 		assertFalse(errorString(ret,ana),result.size() != anagrams.size());
 		
-		for(String s : result){
+		for(E s : result){
 			assertFalse(errorString(ret,ana),!anagrams.contains(s));
 		}
 		assertTrue(true);
-		
 	}
 	
 	//树检验

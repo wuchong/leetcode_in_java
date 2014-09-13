@@ -36,5 +36,12 @@ public class SymmetricTreeTest {
 		SymmetricTree a = new SymmetricTree();
 		assertEquals(true, a.isSymmetric(root));
 	}
-
+	
+	@Test
+	public void test5() {
+		String[] ary = {"4","-57","-57","#","67","67","#","#","-97","-97"};
+		TreeNode root = CommonUtil.buildTree(ary);
+		SymmetricTree a = new SymmetricTree();
+		assertEquals(true, a.isSymmetric(root));
+	}
 }
