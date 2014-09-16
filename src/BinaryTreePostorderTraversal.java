@@ -20,29 +20,27 @@ import java.util.Stack;
  */
 public class BinaryTreePostorderTraversal {
     public List<Integer> postorderTraversal(TreeNode root) {
-        ArrayList<Integer> result = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
-        if(root == null) return result;
-        TreeNode node = root;
-        TreeNode pre;
-        do{
-        	while(node != null){	//左边的节点都进栈
-        		stack.push(node);
-        		node = node.left;
-        	}
-        	pre = null;
-        	while(!stack.isEmpty()){
-        		node = stack.peek();
-        		//如果右子树访问过了或为空，则访问该节点
-        		if(node.right == pre){
-        			result.add(stack.pop().val);
-        			pre = node;
-        		}else{
-        			node = node.right;
-        			break;	//先处理右子树
-        		}
-        	}
-        }while(!stack.isEmpty());
-        return result;
+        ArrayList<Integer> res = new ArrayList<>();
+        Stack<TreeNode> s = new Stack<>();
+        if(root == null) return res;
+        s.push(root);
+        TreeNode pre = null;
+        TreeNode node = null;
+		while (!s.isEmpty()) {
+			node = s.peek();
+			if ((node.left == null && node.right == null)
+					|| (pre != null && (pre == node.left || pre == node.right))) {
+				pre = s.pop();
+				res.add(pre.val);
+			} else {
+				if (node.right != null) {
+					s.push(node.right);
+				}
+				if (node.left != null) {
+					s.push(node.left);
+				}
+			}
+		}
+        return res;
     }
 }
