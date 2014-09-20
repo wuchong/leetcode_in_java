@@ -28,8 +28,8 @@ public class BinaryTreePostorderTraversal {
         TreeNode node = null;
 		while (!s.isEmpty()) {
 			node = s.peek();
-			if ((node.left == null && node.right == null)
-					|| (pre != null && (pre == node.left || pre == node.right))) {
+			if ((node.left == null && node.right == null)		//如果是叶子节点
+					|| (pre != null && (pre == node.left || pre == node.right))) {	//或者之前遍历过的节点是当前节点的孩子节点
 				pre = s.pop();
 				res.add(pre.val);
 			} else {
