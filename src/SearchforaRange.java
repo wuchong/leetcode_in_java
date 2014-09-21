@@ -23,7 +23,7 @@ public class SearchforaRange {
     		mid = left + ((right-left+1)>>1);   //注意要加1
     		if(A[mid] > target){
     			right = mid - 1;
-    		}else{	//A[mid] <= target
+    		}else{	//A[mid] <= target 此处不能拆成两个条件
     			left = mid; 
     		}
     	}
